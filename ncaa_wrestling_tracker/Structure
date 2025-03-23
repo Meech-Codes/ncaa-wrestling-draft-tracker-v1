@@ -1,0 +1,31 @@
+# Directory structure for the NCAA Wrestling Tracker
+
+ncaa_wrestling_tracker/
+├── __init__.py
+├── config.py                  # Configuration settings
+├── main.py                    # Entry point 
+├── utils/
+│   ├── __init__.py
+│   ├── logging_utils.py       # Logging functions
+│   ├── text_utils.py          # Text processing utilities
+│   └── file_utils.py          # File handling utilities
+├── data/
+│   ├── __init__.py
+│   ├── data_loader.py         # Functions to load draft data
+│   └── data_saver.py          # Functions to save results
+├── parsers/
+│   ├── __init__.py
+│   ├── match_parser.py        # Match text parsing
+│   └── placement_parser.py    # Placement text parsing
+├── processors/
+│   ├── __init__.py
+│   ├── wrestler_matcher.py    # Matching wrestlers across sources
+│   ├── scorer.py              # NCAA scoring implementation
+│   └── results_processor.py   # Process match results
+└── reports/
+    ├── __init__.py
+    ├── report_generator.py    # Generate text reports
+    └── analytics.py           # Additional data analysis
+
+# Use Built-in debug tool
+# python -m ncaa_wrestling_tracker.main --debug-wrestler "Jaxon Smith"

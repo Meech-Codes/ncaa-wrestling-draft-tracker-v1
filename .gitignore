@@ -1,0 +1,29 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+eggs/
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Results and data folders
+Results/
+results_*/
+
+# IDE
+.vscode/
+*.code-workspace
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
