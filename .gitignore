@@ -27,3 +27,6 @@ results_*/
 # System files
 .DS_Store
 Thumbs.db
+
+# Sandbox Notebooks
+debug_data.py

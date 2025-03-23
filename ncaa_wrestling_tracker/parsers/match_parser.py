@@ -32,6 +32,8 @@ ROUND_MAPPING = {
     "Cons. Round 4": {"bracket": "Cons", "round_num": 4, "full_round": "Cons. R4", "advancement_points": 0.5},
     "Cons. Round 5": {"bracket": "Cons", "round_num": 5, "full_round": "Cons. R5", "advancement_points": 0.5},
     "Cons. Semi": {"bracket": "Cons", "round_num": 6, "full_round": "Cons. Semis", "advancement_points": 0.5},
+    "Cons. Semis": {"bracket": "Cons", "round_num": 6, "full_round": "Cons. Semis", "advancement_points": 0.5},
+    "Cons. Semis (32 Man)": {"bracket": "Cons", "round_num": 6, "full_round": "Cons. Semis", "advancement_points": 0.5},
     
     # Placement matches
     "3rd Place Match": {"bracket": "Place", "round_num": 7, "full_round": "3rd Place", "advancement_points": 0.0},
