@@ -50,11 +50,11 @@ est_time = datetime.now(eastern)
 formatted_time = est_time.strftime("%m/%d/%Y %I:%M:%S %p EST")  # 12-hour format with AM/PM
 
 # Page header
-st.title("NCAA Wrestling Draft Tracker")
+st.title("Fantasy Draft Tracker for NCAA Wrestling Championships")
 st.markdown(f"Last updated: {formatted_time}")
 
 # Simplified sidebar
-st.sidebar.title("NCAA Wrestling Draft Tracker")
+st.sidebar.title("Fantasy Draft Tracker")
 
 # Simple controls only
 st.sidebar.subheader("Controls")
