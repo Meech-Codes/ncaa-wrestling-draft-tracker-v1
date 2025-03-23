@@ -179,8 +179,13 @@ with tabs[1]:
         if selected_team != 'All':
             filtered_df = filtered_df[filtered_df['Owner'] == selected_team]
         
-        # Format the dataframe - highlight wins and losses
-        def highlight_results(val):
+        # Modified highlight function that only formats round columns
+        def highlight_results(val, col_name):
+            # Skip formatting for descriptive columns
+            if col_name in ['Weight', 'Wrestler', 'School', 'Seed', 'Owner', 'Wrestler ID']:
+                return ''
+            
+            # Apply formatting only to round result columns
             if pd.isna(val):
                 return ''
             elif isinstance(val, str) and val.startswith('W'):
@@ -189,8 +194,8 @@ with tabs[1]:
                 return 'background-color: #ffc7ce; color: #9c0006'  # Red for losses
             return ''
         
-        # Apply styling and display
-        st.dataframe(filtered_df.style.applymap(highlight_results), use_container_width=True)
+        # Apply styling with column-aware function and display
+        st.dataframe(filtered_df.style.apply(lambda x: x.apply(highlight_results, col_name=x.name)), use_container_width=True)
     else:
         st.info("No round-by-round data available. Please update results.")
 
