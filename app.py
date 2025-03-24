@@ -343,97 +343,97 @@ with tabs[3]:
     else:
         st.info("No placement data available. Please wait for updated results.")
 
-# Add a section for Team Points by School
-st.subheader("Team Points by School")
+# # Add a section for Team Points by School
+# st.subheader("Team Points by School")
 
-if 'placements_df' in st.session_state and not st.session_state['placements_df'].empty and 'results_df' in st.session_state:
-    try:
-        # Get the placements and results dataframes
-        placements_df = st.session_state['placements_df'].copy()
-        results_df = st.session_state['results_df'].copy()
+# if 'placements_df' in st.session_state and not st.session_state['placements_df'].empty and 'results_df' in st.session_state:
+#     try:
+#         # Get the placements and results dataframes
+#         placements_df = st.session_state['placements_df'].copy()
+#         results_df = st.session_state['results_df'].copy()
         
-        # Check if we have the necessary columns
-        if 'school' in placements_df.columns and 'placement' in placements_df.columns:
-            # Create a summary by school
-            school_points = []
+#         # Check if we have the necessary columns
+#         if 'school' in placements_df.columns and 'placement' in placements_df.columns:
+#             # Create a summary by school
+#             school_points = []
             
-            # Get unique schools
-            schools = placements_df['school'].unique()
+#             # Get unique schools
+#             schools = placements_df['school'].unique()
             
-            for school in schools:
-                # Filter results for this school
-                school_wrestlers = results_df[results_df['Wrestler'].str.contains(f"({school})", regex=False)]
+#             for school in schools:
+#                 # Filter results for this school
+#                 school_wrestlers = results_df[results_df['Wrestler'].str.contains(f"({school})", regex=False)]
                 
-                # Sum points if we have any wrestlers from this school
-                if not school_wrestlers.empty:
-                    total_points = school_wrestlers['total_points'].sum()
-                    placement_points = school_wrestlers['placement_points'].sum() if 'placement_points' in school_wrestlers.columns else 0
+#                 # Sum points if we have any wrestlers from this school
+#                 if not school_wrestlers.empty:
+#                     total_points = school_wrestlers['total_points'].sum()
+#                     placement_points = school_wrestlers['placement_points'].sum() if 'placement_points' in school_wrestlers.columns else 0
                     
-                    # Count All-Americans (top 8 placements)
-                    all_americans = len(school_wrestlers[school_wrestlers['placement'].notna() & 
-                                                      (school_wrestlers['placement'] <= 8)])
+#                     # Count All-Americans (top 8 placements)
+#                     all_americans = len(school_wrestlers[school_wrestlers['placement'].notna() & 
+#                                                       (school_wrestlers['placement'] <= 8)])
                     
-                    # Count Champions (1st place)
-                    champions = len(school_wrestlers[school_wrestlers['placement'] == 1])
+#                     # Count Champions (1st place)
+#                     champions = len(school_wrestlers[school_wrestlers['placement'] == 1])
                     
-                    # Add to our summary
-                    school_points.append({
-                        'School': school,
-                        'Total Points': round(total_points, 1),
-                        'Placement Points': round(placement_points, 1),
-                        'All-Americans': all_americans,
-                        'Champions': champions
-                    })
+#                     # Add to our summary
+#                     school_points.append({
+#                         'School': school,
+#                         'Total Points': round(total_points, 1),
+#                         'Placement Points': round(placement_points, 1),
+#                         'All-Americans': all_americans,
+#                         'Champions': champions
+#                     })
             
-            # Create dataframe and sort by total points
-            if school_points:
-                school_df = pd.DataFrame(school_points)
-                school_df = school_df.sort_values('Total Points', ascending=False)
+#             # Create dataframe and sort by total points
+#             if school_points:
+#                 school_df = pd.DataFrame(school_points)
+#                 school_df = school_df.sort_values('Total Points', ascending=False)
                 
-                # Display options
-                display_option = st.radio(
-                    "Display format:",
-                    ["Table", "Bar Chart", "Both"],
-                    horizontal=True
-                )
+#                 # Display options
+#                 display_option = st.radio(
+#                     "Display format:",
+#                     ["Table", "Bar Chart", "Both"],
+#                     horizontal=True
+#                 )
                 
-                # Display table if selected
-                if display_option in ["Table", "Both"]:
-                    st.dataframe(school_df, use_container_width=True)
+#                 # Display table if selected
+#                 if display_option in ["Table", "Both"]:
+#                     st.dataframe(school_df, use_container_width=True)
                 
-                # Display bar chart if selected
-                if display_option in ["Bar Chart", "Both"]:
-                    # Create a horizontal bar chart
-                    fig = px.bar(
-                        school_df,
-                        y='School',
-                        x='Total Points',
-                        orientation='h',
-                        color='Total Points',
-                        color_continuous_scale='Viridis',
-                        text='Total Points',
-                        hover_data=['All-Americans', 'Champions']
-                    )
+#                 # Display bar chart if selected
+#                 if display_option in ["Bar Chart", "Both"]:
+#                     # Create a horizontal bar chart
+#                     fig = px.bar(
+#                         school_df,
+#                         y='School',
+#                         x='Total Points',
+#                         orientation='h',
+#                         color='Total Points',
+#                         color_continuous_scale='Viridis',
+#                         text='Total Points',
+#                         hover_data=['All-Americans', 'Champions']
+#                     )
                     
-                    # Update layout
-                    fig.update_layout(
-                        title='Team Points by School',
-                        yaxis={'categoryorder': 'total ascending'},
-                        height=max(400, len(school_df) * 25)  # Dynamic height based on number of schools
-                    )
+#                     # Update layout
+#                     fig.update_layout(
+#                         title='Team Points by School',
+#                         yaxis={'categoryorder': 'total ascending'},
+#                         height=max(400, len(school_df) * 25)  # Dynamic height based on number of schools
+#                     )
                     
-                    # Display the chart
-                    st.plotly_chart(fig, use_container_width=True)
-            else:
-                st.info("No school data available to display.")
-        else:
-            st.info("Placement data doesn't contain school information.")
-    except Exception as e:
-        st.error(f"Error creating Team Points by School visualization: {e}")
-        import traceback
-        st.error(traceback.format_exc())
-else:
-    st.info("Placement data not available. Please update results first.")
+#                     # Display the chart
+#                     st.plotly_chart(fig, use_container_width=True)
+#             else:
+#                 st.info("No school data available to display.")
+#         else:
+#             st.info("Placement data doesn't contain school information.")
+#     except Exception as e:
+#         st.error(f"Error creating Team Points by School visualization: {e}")
+#         import traceback
+#         st.error(traceback.format_exc())
+# # else:
+#     st.info("Placement data not available. Please update results first.")
 
 
 with tabs[4]:
